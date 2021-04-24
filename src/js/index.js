@@ -1,4 +1,4 @@
-import menuCardTp from "../templates/menu-card.hbs";
+// import menuCardTp from "../templates/menu-card.hbs";
 import menuCardsTp from "../templates/menu-cards.hbs";
 import menu from "./menu.json";
 
@@ -21,11 +21,11 @@ const menuCardsMarkup = createMenuCardsMarkup(menu);
 
 menuContainer.insertAdjacentHTML("afterbegin", menuCardsMarkup);
 
-switchToggleref.addEventListener("change", () => {
-  if (switchToggleref.checked === "true") {
-    bodyRef.classList.add(DARK);
-  } else if (switchToggleref.checked === "true") {
-    bodyRef.classList.remove(DARK);
-    bodyRef.classList.add(LIGHT);
+switchToggleref.addEventListener("change", onSwitchTheme);
+
+function onSwitchTheme(e) {
+  if (e.target.id !== "theme-switch-toggle") {
+    return;
   }
-});
+  bodyRef.classList.toggle(Theme.DARK);
+}
