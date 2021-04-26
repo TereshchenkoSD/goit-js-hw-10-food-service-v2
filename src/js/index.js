@@ -8,6 +8,10 @@ const switchToggleref = document.querySelector("#theme-switch-toggle");
 
 const bodyRef = document.querySelector("body");
 
+const switchContainer = document.querySelector(".theme-switch__control");
+
+switchContainer.addEventListener("change", onLocalStorageSave);
+
 const Theme = {
   LIGHT: "light-theme",
   DARK: "dark-theme",
@@ -28,4 +32,14 @@ function onSwitchTheme(e) {
     return;
   }
   bodyRef.classList.toggle(Theme.DARK);
+}
+
+function onLocalStorageSave(e) {
+  if (e.target.checked) {
+    localStorage.setItem("current theme", Theme.DARK);
+  }
+
+  if (!e.target.checked) {
+    localStorage.setItem("current theme", Theme.LIGHT);
+  }
 }
